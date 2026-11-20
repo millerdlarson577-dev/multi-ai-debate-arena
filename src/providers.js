@@ -67,7 +67,7 @@ const PROVIDER_META = [
     vendor: 'Google',
     type: 'gemini',
     defaultBase: 'https://generativelanguage.googleapis.com',
-    defaultModel: 'gemini-3-flash-preview',
+    defaultModel: 'gemini-flash-lite-latest',
     envKey: 'GEMINI_API_KEY',
     persona: '发散联想派：擅长跨领域类比、长期视角与新颖角度，思路开阔。',
     color: '#34a853',
