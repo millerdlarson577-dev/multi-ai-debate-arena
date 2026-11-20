@@ -1,0 +1,12 @@
+# 依赖（本项目零依赖，保留以防本地安装）
+node_modules/
+
+# 环境变量与密钥
+.env
+.env.local
+.env.*.local
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
