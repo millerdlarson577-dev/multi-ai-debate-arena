@@ -76,7 +76,7 @@ function resolveParticipants(list) {
       color: meta.color,
       apiKey,
       baseURL: item.baseURL || meta.defaultBase,
-      model: item.model || meta.defaultModel,
+      model: item.model || process.env[`${meta.envKey.replace('_API_KEY', '')}_MODEL`] || meta.defaultModel,
     });
   }
   return resolved;
