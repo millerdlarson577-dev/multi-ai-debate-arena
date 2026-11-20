@@ -13,6 +13,21 @@ const PUBLIC_DIR = path.join(ROOT, 'public');
 // 启动时加载同目录 .env（不覆盖已有环境变量）
 loadEnvFile(path.join(ROOT, '.env'));
 
+// 可选：后端请求走本地 HTTP 代理（海外模型用）。.env 里设 PROXY=http://127.0.0.1:7897
+setupProxy();
+
+function setupProxy() {
+  const proxy = process.env.PROXY || process.env.HTTPS_PROXY || process.env.HTTP_PROXY || '';
+  if (!proxy) return;
+  try {
+    const { ProxyAgent, setGlobalDispatcher } = require('undici');
+    setGlobalDispatcher(new ProxyAgent(proxy));
+    console.log(`后端已走代理：${proxy}`);
+  } catch (e) {
+    console.warn('代理模块 undici 未安装，后端保持直连。');
+  }
+}
+
 function loadEnvFile(file) {
   if (!fs.existsSync(file)) return;
   const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
